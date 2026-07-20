@@ -82,14 +82,27 @@ def build_index(passages: List[Dict], batch_size: int = 256) -> None:
           f"{collection.count()} passages.")
 
 
-def retrieve(query: str, top_k: int | None = None) -> List[Dict]:
-    """Return the top_k most relevant passages for a query."""
+def retrieve(query: str, top_k: int | None = None,
+             where: Dict | None = None) -> List[Dict]:
+    """Return the top_k most relevant passages for a query.
+
+    If a `where` metadata filter is provided (e.g. restrict to specific players
+    and/or a specific week), retrieval is limited to matching passages before
+    ranking. This sharply improves precision on week-specific questions.
+    """
     top_k = top_k or config.top_k
     embedder = Embedder()
     collection = _get_collection()
 
     qvec = embedder.embed([query])[0]
-    res = collection.query(query_embeddings=[qvec], n_results=top_k)
+    query_kwargs = {"query_embeddings": [qvec], "n_results": top_k}
+    if where:
+        query_kwargs["where"] = where
+    res = collection.query(**query_kwargs)
+
+    # A filter can legitimately match zero passages; guard against empty results.
+    if not res["documents"] or not res["documents"][0]:
+        return []
 
     hits = []
     for doc, md, dist in zip(

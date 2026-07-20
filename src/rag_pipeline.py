@@ -12,6 +12,7 @@ from typing import Dict, List
 
 from .config import config
 from .embed_store import retrieve
+from .entities import extract_filters, build_where_clause
 
 SYSTEM_PROMPT = (
     "You are Fantasy Football Co-Pilot, an assistant that helps managers make "
@@ -38,7 +39,16 @@ def answer(query: str, top_k: int | None = None) -> Dict:
     """
     from openai import OpenAI
 
-    hits = retrieve(query, top_k=top_k)
+    # Extract players/week from the question and filter retrieval to matching
+    # passages. This keeps the retrieved context on-topic (right players, right
+    # week) instead of relying on semantic similarity alone. If the filter matches
+    # nothing (e.g. a player had a bye that week), fall back to plain retrieval.
+    filters = extract_filters(query)
+    where = build_where_clause(filters["players"], filters["week"])
+    hits = retrieve(query, top_k=top_k, where=where)
+    if not hits and where is not None:
+        hits = retrieve(query, top_k=top_k)
+
     context = _format_context(hits)
 
     client = OpenAI()
