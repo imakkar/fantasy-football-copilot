@@ -8,8 +8,8 @@ Required Component 1.
 
 The system answers natural-language fantasy football questions of two kinds:
 
-- **Start/sit** ("In Week 5 of 2025, should I start Jefferson or Lamb?")
-- **Draft** ("Is Malik Nabers a strong first-round pick for 2026?")
+- **Start/sit** ("In Week 5 of 2024, should I start Jefferson or Lamb?")
+- **Draft** ("Is Malik Nabers a strong first-round pick for 2025?")
 
 The core NLP task is **retrieval-augmented question answering (QA) over a
 domain-specific corpus** of NFL statistics. The primary research question (RQ1) is
@@ -59,8 +59,8 @@ loader.
 
 Small-scale validation performed before full implementation:
 
-1. **Data availability.** Confirmed `nfl_data_py.import_weekly_data([2025])` returns
-   complete weekly stats for the 2025 season including `fantasy_points_ppr`, which we
+1. **Data availability.** Confirmed `nfl_data_py.import_weekly_data([2024])` returns
+   complete weekly stats for the 2024 season including `fantasy_points_ppr`, which we
    use as objective ground truth. This let us drop all web scraping (a major
    scope/risk reduction versus the Milestone 2 plan).
 2. **Passage design.** Compared one-passage-per-player-week against

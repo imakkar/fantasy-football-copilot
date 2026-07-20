@@ -16,10 +16,10 @@ class Config:
 
     # ---- Data ----
     # The most recently COMPLETED NFL season. NFL seasons are named by the year
-    # they start, so the season played Sept 2025 -> Feb 2026 is "2025".
-    stats_season: int = 2025
+    # they start, so the season played Sept 2024 -> Feb 2025 is "2024".
+    stats_season: int = 2024
     # The upcoming season, used for schedule / roster context in draft questions.
-    upcoming_season: int = 2026
+    upcoming_season: int = 2025
 
     # Only keep the fantasy-relevant offensive positions. This keeps the corpus
     # focused and small, which is a deliberate scope-control decision.
@@ -36,7 +36,7 @@ class Config:
 
     # ---- Vector store ----
     chroma_dir: str = os.getenv("CHROMA_DIR", "data/chroma")
-    collection_name: str = "nfl_2025_passages"
+    collection_name: str = "nfl_2024_passages"
     top_k: int = 8  # number of passages retrieved per query
 
     # ---- Generator LLM ----

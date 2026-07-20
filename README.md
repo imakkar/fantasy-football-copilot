@@ -2,7 +2,7 @@
 
 A Retrieval-Augmented Generation (RAG) assistant that answers fantasy football
 **draft** and **start/sit** questions by grounding a large language model in real
-NFL statistics from the completed 2025 season.
+NFL statistics from the completed 2024 season.
 
 **Author:** Ishan Makkar (solo project, approved by the course instructor)
 **Course:** IE 7374 — Generative AI
@@ -14,7 +14,7 @@ NFL statistics from the completed 2025 season.
 
 Ask a natural-language question like:
 
-> *"In Week 5 of the 2025 season, should I have started Justin Jefferson or CeeDee Lamb?"*
+> *"In Week 5 of the 2024 season, should I have started Justin Jefferson or CeeDee Lamb?"*
 
 The system retrieves the relevant player-week statistics from a vector store and asks
 an LLM to answer **using only that retrieved context**, citing the stats it relied on.
@@ -24,7 +24,7 @@ hallucinated) memory.
 ## Research question (RQ1)
 
 > Does grounding an LLM's fantasy football recommendations in a retrieval-augmented
-> pipeline over structured 2025-season statistics improve factual faithfulness and
+> pipeline over structured 2024-season statistics improve factual faithfulness and
 > outcome accuracy compared to prompting the same LLM directly, without retrieval?
 
 To answer this, the repo implements **two systems** — a RAG pipeline and a no-retrieval
@@ -33,7 +33,7 @@ baseline — and an evaluation harness that compares them.
 ## Architecture
 
 ```
-nfl_data_py (2025 stats)
+nfl_data_py (2024 stats)
         │  src/data_loader.py
         ▼
   weekly stat rows
@@ -111,7 +111,7 @@ key is only required to run the generator LLM in `rag_pipeline` / `baseline` /
 python -m src.build_index
 ```
 
-This downloads the 2025 weekly stats (cached to `data/raw/`), builds passages
+This downloads the 2024 weekly stats (cached to `data/raw/`), builds passages
 (`data/processed/passages.jsonl`), and populates the ChromaDB vector store
 (`data/chroma/`).
 
@@ -147,7 +147,7 @@ for human faithfulness/helpfulness annotation.
 
 Start/sit questions are scored **objectively**: the ground-truth "correct" answer is
 whichever player actually scored more PPR fantasy points that week, computed directly
-from `fantasy_points_ppr` in the 2025 data — never hand-labeled. A system is "correct"
+from `fantasy_points_ppr` in the 2024 data — never hand-labeled. A system is "correct"
 if its recommendation names that player. Draft questions have no single correct
 outcome and are evaluated qualitatively (faithfulness + helpfulness).
 

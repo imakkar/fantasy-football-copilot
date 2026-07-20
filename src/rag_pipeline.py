@@ -16,7 +16,7 @@ from .embed_store import retrieve
 SYSTEM_PROMPT = (
     "You are Fantasy Football Co-Pilot, an assistant that helps managers make "
     "draft and start/sit decisions. You are given retrieved statistics from the "
-    "completed 2025 NFL season. Answer the user's question using ONLY the provided "
+    "completed 2024 NFL season. Answer the user's question using ONLY the provided "
     "context. Cite the specific stats you used. If the context does not contain "
     "enough information, say so plainly rather than guessing. Be concise and give a "
     "clear recommendation."
@@ -44,7 +44,7 @@ def answer(query: str, top_k: int | None = None) -> Dict:
     client = OpenAI()
     user_prompt = (
         f"Question: {query}\n\n"
-        f"Retrieved 2025-season context:\n{context}\n\n"
+        f"Retrieved 2024-season context:\n{context}\n\n"
         f"Answer using only the context above and cite the stats you rely on."
     )
     resp = client.chat.completions.create(
@@ -65,5 +65,5 @@ def answer(query: str, top_k: int | None = None) -> Dict:
 
 
 if __name__ == "__main__":
-    out = answer("In 2025, who was the better start in week 5: a WR1 on Detroit or a WR1 on Minnesota?")
+    out = answer("In 2024, who was the better start in week 5: a WR1 on Detroit or a WR1 on Minnesota?")
     print(out["answer"])

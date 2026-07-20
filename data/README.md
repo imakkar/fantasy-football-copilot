@@ -9,19 +9,19 @@ required.
 
 | Data | `nfl_data_py` function | Role in the pipeline |
 |------|------------------------|----------------------|
-| Weekly player stats (2025 season) | `import_weekly_data([2025])` | Primary corpus + ground truth |
-| Seasonal rosters | `import_seasonal_rosters([2025])` | Player/team context |
-| Schedule (2026) | `import_schedules([2026])` | Draft-context matchups |
-| Injuries | `import_injuries([2025])` | Optional context |
+| Weekly player stats (2024 season) | `import_weekly_data([2024])` | Primary corpus + ground truth |
+| Seasonal rosters | `import_seasonal_rosters([2024])` | Player/team context |
+| Schedule (2025) | `import_schedules([2025])` | Draft-context matchups |
+| Injuries | `import_injuries([2024])` | Optional context |
 
 Only the fantasy-relevant offensive positions (QB, RB, WR, TE) are kept.
 
-## Why 2025?
+## Why 2024?
 
-NFL seasons are named by the year they start. The season played September 2025
-through February 2026 is the **2025 season** and is fully complete, giving us
-verifiable outcomes for evaluation. The upcoming season (starting September 2026) is
-the **2026 season**.
+NFL seasons are named by the year they start. The season played September 2024
+through February 2025 is the **2024 season** and is fully complete, giving us
+verifiable outcomes for evaluation. The upcoming season (starting September 2025) is
+the **2025 season**.
 
 ## How the data becomes searchable
 
@@ -36,6 +36,6 @@ the pipeline and are git-ignored; run `python -m src.build_index` to (re)create 
 
 ## Example passage
 
-> In Week 5 of the 2025 NFL season, Justin Jefferson (WR, MIN) played against DET
+> In Week 5 of the 2024 NFL season, Justin Jefferson (WR, MIN) played against DET
 > and scored 24.3 PPR fantasy points (18.3 standard). He caught 8 of 11 targets for
 > 143 receiving yards and 1 touchdown.
