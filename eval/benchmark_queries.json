@@ -1,0 +1,139 @@
+[
+  {
+    "id": "ss_01",
+    "type": "start_sit",
+    "query": "In Week 5 of the 2025 season, should I have started Justin Jefferson or CeeDee Lamb?",
+    "players": ["Justin Jefferson", "CeeDee Lamb"],
+    "week": 5,
+    "notes": "Ground truth = whichever player scored more PPR points that week, computed from the data."
+  },
+  {
+    "id": "ss_02",
+    "type": "start_sit",
+    "query": "In Week 8 of the 2025 season, who was the better start at RB: Bijan Robinson or Saquon Barkley?",
+    "players": ["Bijan Robinson", "Saquon Barkley"],
+    "week": 8
+  },
+  {
+    "id": "ss_03",
+    "type": "start_sit",
+    "query": "For Week 12 of the 2025 season, should I start Josh Allen or Lamar Jackson at quarterback?",
+    "players": ["Josh Allen", "Lamar Jackson"],
+    "week": 12
+  },
+  {
+    "id": "ss_04",
+    "type": "start_sit",
+    "query": "In Week 3 of the 2025 season, was Amon-Ra St. Brown or A.J. Brown the better wide receiver start?",
+    "players": ["Amon-Ra St. Brown", "A.J. Brown"],
+    "week": 3
+  },
+  {
+    "id": "ss_05",
+    "type": "start_sit",
+    "query": "For Week 10 of the 2025 season, should I have started Christian McCaffrey or Jahmyr Gibbs?",
+    "players": ["Christian McCaffrey", "Jahmyr Gibbs"],
+    "week": 10
+  },
+  {
+    "id": "ss_06",
+    "type": "start_sit",
+    "query": "In Week 7 of the 2025 season, who scored more fantasy points: Travis Kelce or George Kittle?",
+    "players": ["Travis Kelce", "George Kittle"],
+    "week": 7
+  },
+  {
+    "id": "ss_07",
+    "type": "start_sit",
+    "query": "For Week 6 of the 2025 season, should I start Tyreek Hill or Ja'Marr Chase?",
+    "players": ["Tyreek Hill", "Ja'Marr Chase"],
+    "week": 6
+  },
+  {
+    "id": "ss_08",
+    "type": "start_sit",
+    "query": "In Week 14 of the 2025 season, was Jalen Hurts or Patrick Mahomes the better quarterback start?",
+    "players": ["Jalen Hurts", "Patrick Mahomes"],
+    "week": 14
+  },
+  {
+    "id": "ss_09",
+    "type": "start_sit",
+    "query": "For Week 4 of the 2025 season, should I have started Derrick Henry or Josh Jacobs?",
+    "players": ["Derrick Henry", "Josh Jacobs"],
+    "week": 4
+  },
+  {
+    "id": "ss_10",
+    "type": "start_sit",
+    "query": "In Week 9 of the 2025 season, who was the better start: Puka Nacua or Garrett Wilson?",
+    "players": ["Puka Nacua", "Garrett Wilson"],
+    "week": 9
+  },
+  {
+    "id": "ss_11",
+    "type": "start_sit",
+    "query": "For Week 11 of the 2025 season, should I start Nico Collins or DK Metcalf?",
+    "players": ["Nico Collins", "DK Metcalf"],
+    "week": 11
+  },
+  {
+    "id": "ss_12",
+    "type": "start_sit",
+    "query": "In Week 2 of the 2025 season, was Kyren Williams or Alvin Kamara the better running back start?",
+    "players": ["Kyren Williams", "Alvin Kamara"],
+    "week": 2
+  },
+  {
+    "id": "ss_13",
+    "type": "start_sit",
+    "query": "For Week 13 of the 2025 season, should I have started Brock Bowers or Trey McBride at tight end?",
+    "players": ["Brock Bowers", "Trey McBride"],
+    "week": 13
+  },
+  {
+    "id": "ss_14",
+    "type": "start_sit",
+    "query": "In Week 1 of the 2025 season, who scored more: Breece Hall or De'Von Achane?",
+    "players": ["Breece Hall", "De'Von Achane"],
+    "week": 1
+  },
+  {
+    "id": "ss_15",
+    "type": "start_sit",
+    "query": "For Week 15 of the 2025 season, should I start Jayden Daniels or Joe Burrow?",
+    "players": ["Jayden Daniels", "Joe Burrow"],
+    "week": 15
+  },
+  {
+    "id": "draft_01",
+    "type": "draft",
+    "query": "Based on 2025 season production, is Malik Nabers a strong first-round fantasy draft pick for 2026? Explain the tradeoffs.",
+    "players": ["Malik Nabers"],
+    "notes": "Draft questions are evaluated qualitatively (faithfulness + helpfulness), not against a single ground-truth outcome."
+  },
+  {
+    "id": "draft_02",
+    "type": "draft",
+    "query": "Using 2025 season stats, who would you rank higher in a 2026 draft: Ja'Marr Chase or Justin Jefferson?",
+    "players": ["Ja'Marr Chase", "Justin Jefferson"]
+  },
+  {
+    "id": "draft_03",
+    "type": "draft",
+    "query": "Given how the 2025 season went, is Bijan Robinson worth a top-3 overall pick in 2026 fantasy drafts?",
+    "players": ["Bijan Robinson"]
+  },
+  {
+    "id": "draft_04",
+    "type": "draft",
+    "query": "Based on 2025 production, which tight end should I target first in a 2026 draft: Brock Bowers or Trey McBride?",
+    "players": ["Brock Bowers", "Trey McBride"]
+  },
+  {
+    "id": "draft_05",
+    "type": "draft",
+    "query": "From 2025 season data, is Jayden Daniels a reliable QB1 to target in 2026 fantasy drafts?",
+    "players": ["Jayden Daniels"]
+  }
+]
