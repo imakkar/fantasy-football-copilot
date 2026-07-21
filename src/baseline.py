@@ -10,7 +10,7 @@ from __future__ import annotations
 
 from typing import Dict
 
-from .config import config
+from .generator import generate
 
 SYSTEM_PROMPT = (
     "You are Fantasy Football Co-Pilot, an assistant that helps managers make "
@@ -21,21 +21,10 @@ SYSTEM_PROMPT = (
 
 def answer(query: str) -> Dict:
     """Answer a query with no retrieval (parametric knowledge only)."""
-    from openai import OpenAI
-
-    client = OpenAI()
-    resp = client.chat.completions.create(
-        model=config.llm_model,
-        temperature=config.llm_temperature,
-        max_tokens=config.llm_max_tokens,
-        messages=[
-            {"role": "system", "content": SYSTEM_PROMPT},
-            {"role": "user", "content": query},
-        ],
-    )
+    answer_text = generate(SYSTEM_PROMPT, query)
     return {
         "query": query,
-        "answer": resp.choices[0].message.content,
+        "answer": answer_text,
         "retrieved": [],
         "mode": "baseline",
     }

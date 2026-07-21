@@ -66,6 +66,33 @@ filter restricts to the named player across the full season, which is exactly th
 context needed for draft reasoning. This directly grounds the LLM in the correct facts
 and is expected to improve RQ1 outcome accuracy.
 
+## End-to-end generation: early RQ1 signal
+
+Running `python -m src.model_runner` (Gemini `gemini-2.5-flash` generator, local
+MiniLM embeddings) on the first five benchmark questions already shows the RAG vs.
+baseline contrast that RQ1 predicts:
+
+| # | Question | RAG | Baseline | Ground truth |
+|---|----------|-----|----------|--------------|
+| 2 | Bijan vs Saquon, Wk8 | **Bijan** (cites 23.6 PPR) — correct | **Saquon** (cites "Eagles offense") — wrong | Bijan 23.6 > Saquon 12.1 |
+| 3 | Allen vs Lamar, Wk12 | States the context lacks Josh Allen; does not guess | Confidently picks Allen | Allen has no Wk12 game row |
+| 4 | St. Brown vs A.J. Brown, Wk3 | States the context lacks A.J. Brown; does not guess | Confidently picks St. Brown | A.J. Brown row missing |
+| 1, 5 | Jefferson/Lamb; CMC/Gibbs | Correct, with cited PPR points | Correct, but unsourced | — |
+
+Two patterns stand out:
+
+1. **Grounding fixes confident errors.** On Q2 the baseline reasoned from narrative
+   ("high-powered Eagles offense") and picked the wrong player; the RAG system read the
+   actual box score and picked correctly.
+2. **Grounding reduces hallucination.** On Q3 and Q4 the RAG system explicitly reported
+   that the retrieved context did not contain the second player (who did not play that
+   week) instead of fabricating an answer, whereas the baseline always produced a
+   confident pick.
+
+These are qualitative observations on five questions; the full 20-query evaluation
+(with human faithfulness/helpfulness ratings) is Milestone 5 work. But the early signal
+supports the RQ1 hypothesis.
+
 ## Takeaways
 
 - The full data pipeline (ingest -> passages -> embed -> store -> retrieve) works end

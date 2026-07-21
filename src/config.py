@@ -40,8 +40,11 @@ class Config:
     top_k: int = 8  # number of passages retrieved per query
 
     # ---- Generator LLM ----
-    # Requires OPENAI_API_KEY to be set in the environment.
-    llm_model: str = os.getenv("LLM_MODEL", "gpt-4o-mini")
+    # Backend selects the provider. "gemini" uses Google's free AI Studio tier
+    # (needs GEMINI_API_KEY, no billing); "openai" uses OpenAI (needs OPENAI_API_KEY).
+    llm_backend: str = os.getenv("LLM_BACKEND", "gemini")
+    gemini_model: str = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
+    openai_model: str = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
     llm_temperature: float = 0.2
     llm_max_tokens: int = 500
 

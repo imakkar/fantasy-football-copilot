@@ -13,6 +13,7 @@ from typing import Dict, List
 from .config import config
 from .embed_store import retrieve
 from .entities import extract_filters, build_where_clause
+from .generator import generate
 
 SYSTEM_PROMPT = (
     "You are Fantasy Football Co-Pilot, an assistant that helps managers make "
@@ -37,8 +38,6 @@ def answer(query: str, top_k: int | None = None) -> Dict:
     Returns a dict with the generated answer plus the retrieved context, so the
     transparency sidebar (and the evaluation harness) can inspect what was used.
     """
-    from openai import OpenAI
-
     # Extract players/week from the question and filter retrieval to matching
     # passages. This keeps the retrieved context on-topic (right players, right
     # week) instead of relying on semantic similarity alone. If the filter matches
@@ -51,24 +50,15 @@ def answer(query: str, top_k: int | None = None) -> Dict:
 
     context = _format_context(hits)
 
-    client = OpenAI()
     user_prompt = (
         f"Question: {query}\n\n"
         f"Retrieved 2024-season context:\n{context}\n\n"
         f"Answer using only the context above and cite the stats you rely on."
     )
-    resp = client.chat.completions.create(
-        model=config.llm_model,
-        temperature=config.llm_temperature,
-        max_tokens=config.llm_max_tokens,
-        messages=[
-            {"role": "system", "content": SYSTEM_PROMPT},
-            {"role": "user", "content": user_prompt},
-        ],
-    )
+    answer_text = generate(SYSTEM_PROMPT, user_prompt)
     return {
         "query": query,
-        "answer": resp.choices[0].message.content,
+        "answer": answer_text,
         "retrieved": hits,
         "mode": "rag",
     }
