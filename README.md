@@ -78,6 +78,13 @@ fantasy-football-copilot/
     └── README.md              # data source and passage design
 ```
 
+**Mapping to the recommended milestone structure:** this project is a
+retrieval-augmented system rather than a train-a-model project, so the layout adapts
+the recommended `data/ models/ experiments/ docs/` structure as follows: `src/` holds
+the model/pipeline implementations (the RAG and baseline "models"), `eval/` holds the
+experiments and results, `docs/` holds the reports, and `data/` documents the data
+source. Dependency management is in `requirements.txt`.
+
 ## Setup
 
 Requires Python 3.9+.

@@ -39,3 +39,23 @@ the pipeline and are git-ignored; run `python -m src.build_index` to (re)create 
 > In Week 5 of the 2024 NFL season, Justin Jefferson (WR, MIN) played against DET
 > and scored 24.3 PPR fantasy points (18.3 standard). He caught 8 of 11 targets for
 > 143 receiving yards and 1 touchdown.
+
+## A note on train/validation/test splits
+
+This project uses a **pretrained, frozen** large language model (no fine-tuning or
+training from scratch), so the traditional train/validation/test split does not apply
+in the usual sense: there is no model being fit to a training partition.
+
+Instead, the roles map as follows:
+
+- **Corpus (all 2024 weekly passages)** — the knowledge base the RAG system retrieves
+  from. It is not "training data" for any model; it is the reference the frozen LLM is
+  grounded in at inference time.
+- **Held-out evaluation set** — the fixed 20-query benchmark in
+  `eval/benchmark_queries.json` acts as the test set. It is written independently of
+  the system and never used to tune anything, which keeps the evaluation honest.
+- **Ground truth** — for start/sit questions, the correct answer is computed directly
+  from `fantasy_points_ppr` in the same 2024 data, so it is objective and reproducible.
+
+If the project later adds a fine-tuning component (a documented stretch goal), a proper
+train/validation/test split of the query set would be introduced at that point.
