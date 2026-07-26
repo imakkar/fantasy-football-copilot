@@ -1,0 +1,74 @@
+[
+  {
+    "id": "ss_01",
+    "query": "In Week 5 of the 2024 season, should I have started Justin Jefferson or CeeDee Lamb?",
+    "rag_answer": "In Week 5 of the 2024 season, you should have started Justin Jefferson.\n\nJustin Jefferson scored 15.2 PPR fantasy points (Context [2]), while CeeDee Lamb scored 11.4 PPR fantasy points (Context [1]).",
+    "rag_latency_s": 8.37,
+    "num_retrieved": 2,
+    "baseline_answer": "You should have started **Justin Jefferson**.\n\nBoth are elite, must-start wide receivers,",
+    "baseline_latency_s": 3.13
+  },
+  {
+    "id": "ss_02",
+    "query": "In Week 8 of the 2024 season, who was the better start at RB: Bijan Robinson or Saquon Barkley?",
+    "rag_answer": "In Week 8 of the 2024 season, Bijan Robinson was the better start at RB.\n\nBijan Robinson scored 23.6 PPR fantasy points (Context [2]), while Saquon Barkley scored 12.1 PPR fantasy points (Context [1]).",
+    "rag_latency_s": 2.2,
+    "num_retrieved": 2,
+    "baseline_answer": "For Week 8 of the 2024 season, **Bijan Robinson",
+    "baseline_latency_s": 3.28
+  },
+  {
+    "id": "ss_03",
+    "query": "For Week 12 of the 2024 season, should I start Josh Allen or Lamar Jackson at quarterback?",
+    "rag_answer": "The provided context only contains information for Lamar Jackson's performance in Week 12. Lamar Jackson scored 22.6 PPR fantasy points, throwing for 177 yards and 2 touchdowns with 0 interceptions, and adding 15 rushing yards and 1 rushing touchdown [1].\n\nThe context does not contain any information regarding Josh Allen's performance in Week 12, so a direct comparison cannot be made.",
+    "rag_latency_s": 2.65,
+    "num_retrieved": 1,
+    "baseline_answer": "Start **Josh Allen**. Both are elite options, but Allen typically offers a higher fantasy ceiling due to his consistent passing volume and red-zone rushing upside.",
+    "baseline_latency_s": 2.73
+  },
+  {
+    "id": "ss_04",
+    "query": "In Week 3 of the 2024 season, was Amon-Ra St. Brown or A.J. Brown the better wide receiver start?",
+    "rag_answer": "The provided context only contains information for Amon-Ra St. Brown in Week 3 of the 2024 season. It does not contain any statistics for A.J. Brown in Week 3, so a comparison cannot be made.",
+    "rag_latency_s": 2.2,
+    "num_retrieved": 1,
+    "baseline_answer": "The 2024 NFL season has not happened yet, so we don't know the Week 3 performance for either Amon-Ra St. Brown or A.J. Brown. It's impossible to say who was the better start.",
+    "baseline_latency_s": 1.13
+  },
+  {
+    "id": "ss_05",
+    "query": "For Week 10 of the 2024 season, should I have started Christian McCaffrey or Jahmyr Gibbs?",
+    "rag_answer": "For Week 10 of the 2024 season, you should have started Christian McCaffrey. He scored 16.7 PPR fantasy points, while Jahmyr Gibbs scored 12.8 PPR fantasy points (Context [1], Context [2]).",
+    "rag_latency_s": 2.52,
+    "num_retrieved": 2,
+    "baseline_answer": "You should have started **Christian McCaffrey**. He is an elite, top-tier running back and a consistent fantasy producer, making him a must-start whenever healthy.",
+    "baseline_latency_s": 2.56
+  },
+  {
+    "id": "ss_06",
+    "query": "In Week 7 of the 2024 season, who scored more fantasy points: Travis Kelce or George Kittle?",
+    "rag_answer": "In Week 7 of the 2024 season, George Kittle scored more fantasy points than Travis Kelce. George Kittle scored 15.2 PPR fantasy points [2], while Travis Kelce scored 5.7 PPR fantasy points [1].",
+    "rag_latency_s": 2.29,
+    "num_retrieved": 2,
+    "baseline_answer": "It's impossible to say who scored more fantasy points in Week 7 of the 2024 season, as the 2024 NFL season has not happened yet.",
+    "baseline_latency_s": 1.01
+  },
+  {
+    "id": "ss_07",
+    "query": "For Week 6 of the 2024 season, should I start Tyreek Hill or Ja'Marr Chase?",
+    "rag_answer": "The provided context only contains information for Ja'Marr Chase in Week 6 of the 2024 season, not Tyreek Hill. Therefore, I cannot recommend whether to start Tyreek Hill or Ja'Marr Chase.",
+    "rag_latency_s": 2.46,
+    "num_retrieved": 1,
+    "baseline_answer": "Start Tyreek Hill. He consistently offers the highest ceiling in fantasy football due to his explosive play and target volume.",
+    "baseline_latency_s": 1.91
+  },
+  {
+    "id": "ss_08",
+    "query": "In Week 14 of the 2024 season, was Jalen Hurts or Patrick Mahomes the better quarterback start?",
+    "rag_answer": "In Week 14 of the 2024 season, Jalen Hurts was the better quarterback start. He scored 24.2 PPR fantasy points [1], while Patrick Mahomes scored 14.1 PPR fantasy points [2].",
+    "rag_latency_s": 2.29,
+    "num_retrieved": 2,
+    "baseline_answer": "The 2024 NFL season has not happened yet, so it's impossible to say who *was* the better start in Week 14.\n\nHowever, both Jalen Hurts and Patrick Mahomes are elite, top-tier quarterbacks. In most fantasy football scenarios, they are considered \"set-it-and-forget-it\" starters regardless of the matchup.\n\nTo make an informed decision closer to Week 14 of the 2024 season, you would need to consider:\n*   **Matchups:** Who are they playing and how do those defenses rank against QBs?\n*   **Recent Performance:** Are either of them in a slump or on a hot streak?\n*   **Injuries:** Are there any injuries to key offensive players (receivers, O-line) that might impact their production?\n*   **Vegas Lines:** Over/under and spread can indicate potential for high-scoring games.\n\nWithout that future information, you would typically start both if you had",
+    "baseline_latency_s": 3.02
+  }
+]

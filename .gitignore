@@ -11,8 +11,13 @@ data/raw/
 data/processed/
 data/chroma/
 
-# Generated outputs
-outputs/
+# Generated outputs (large/regenerated) are ignored, but the committed sample
+# outputs under outputs/ (samples.txt, sample_generations.json, README.md) are
+# force-added as milestone evidence -- see `git add -f`.
+outputs/*
+!outputs/samples.txt
+!outputs/sample_generations.json
+!outputs/README.md
 
 # Secrets
 .env

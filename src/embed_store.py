@@ -18,6 +18,7 @@ from typing import Dict, List
 import chromadb
 
 from .config import config
+from utils.helpers import sanitize_metadata
 
 
 class Embedder:
@@ -52,17 +53,6 @@ def _get_collection():
     )
 
 
-def _sanitize_metadata(md: Dict) -> Dict:
-    """Chroma only accepts str/int/float/bool metadata values."""
-    clean = {}
-    for k, v in md.items():
-        if isinstance(v, (str, int, float, bool)):
-            clean[k] = v
-        else:
-            clean[k] = str(v)
-    return clean
-
-
 def build_index(passages: List[Dict], batch_size: int = 256) -> None:
     """Embed all passages and upsert them into the ChromaDB collection."""
     embedder = Embedder()
@@ -73,7 +63,7 @@ def build_index(passages: List[Dict], batch_size: int = 256) -> None:
         batch = passages[start : start + batch_size]
         ids = [p["id"] for p in batch]
         docs = [p["text"] for p in batch]
-        metas = [_sanitize_metadata(p["metadata"]) for p in batch]
+        metas = [sanitize_metadata(p["metadata"]) for p in batch]
         vectors = embedder.embed(docs)
         collection.upsert(ids=ids, documents=docs, embeddings=vectors, metadatas=metas)
         print(f"[embed] indexed {min(start + batch_size, total)}/{total}")

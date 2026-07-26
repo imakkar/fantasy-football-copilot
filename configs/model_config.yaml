@@ -1,0 +1,31 @@
+# Fantasy Football Co-Pilot -- model & pipeline configuration
+#
+# These values are loaded by src/config.py at import time. Editing this file changes
+# the pipeline's behaviour without touching any Python. Environment variables (where
+# noted in src/config.py) still take precedence over these values.
+
+data:
+  # Most recently COMPLETED NFL season (named by the year it starts).
+  stats_season: 2024
+  # Upcoming season, used for draft/schedule context.
+  upcoming_season: 2025
+  # Fantasy-relevant offensive positions to keep.
+  positions: [QB, RB, WR, TE]
+
+embeddings:
+  # "local" (sentence-transformers, free, no API key) or "openai".
+  backend: local
+  local_model: sentence-transformers/all-MiniLM-L6-v2
+  openai_model: text-embedding-3-small
+
+vector_store:
+  collection_name: nfl_2024_passages
+  top_k: 8
+
+generator:
+  # "gemini" (free AI Studio tier) or "openai".
+  backend: gemini
+  gemini_model: gemini-2.5-flash
+  openai_model: gpt-4o-mini
+  temperature: 0.2
+  max_tokens: 500
