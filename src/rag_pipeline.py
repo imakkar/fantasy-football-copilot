@@ -14,6 +14,7 @@ from .config import config
 from .embed_store import retrieve
 from .entities import extract_filters, build_where_clause
 from .generator import generate
+from utils.helpers import format_context
 
 SYSTEM_PROMPT = (
     "You are Fantasy Football Co-Pilot, an assistant that helps managers make "
@@ -23,13 +24,6 @@ SYSTEM_PROMPT = (
     "enough information, say so plainly rather than guessing. Be concise and give a "
     "clear recommendation."
 )
-
-
-def _format_context(hits: List[Dict]) -> str:
-    lines = []
-    for i, hit in enumerate(hits, 1):
-        lines.append(f"[{i}] {hit['text']}")
-    return "\n".join(lines)
 
 
 def answer(query: str, top_k: int | None = None) -> Dict:
@@ -48,7 +42,7 @@ def answer(query: str, top_k: int | None = None) -> Dict:
     if not hits and where is not None:
         hits = retrieve(query, top_k=top_k)
 
-    context = _format_context(hits)
+    context = format_context(hits)
 
     user_prompt = (
         f"Question: {query}\n\n"
