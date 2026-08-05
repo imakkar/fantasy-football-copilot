@@ -109,17 +109,26 @@ def run(ground_truth_only: bool = False) -> None:
             rows_for_csv.append(record)
             continue
 
-        # RAG
-        t0 = time.time()
-        rag_out = rag_pipeline.answer(item["query"])
-        record["rag_latency_s"] = round(time.time() - t0, 2)
-        record["rag_answer"] = rag_out["answer"]
+        # RAG + baseline, with error handling so one failure doesn't kill the run.
+        try:
+            t0 = time.time()
+            rag_out = rag_pipeline.answer(item["query"])
+            record["rag_latency_s"] = round(time.time() - t0, 2)
+            record["rag_answer"] = rag_out["answer"]
 
-        # Baseline
-        t0 = time.time()
-        base_out = baseline.answer(item["query"])
-        record["baseline_latency_s"] = round(time.time() - t0, 2)
-        record["baseline_answer"] = base_out["answer"]
+            t0 = time.time()
+            base_out = baseline.answer(item["query"])
+            record["baseline_latency_s"] = round(time.time() - t0, 2)
+            record["baseline_answer"] = base_out["answer"]
+        except Exception as exc:
+            print(f"[eval] {item['id']} failed: {exc}")
+            record["rag_answer"] = f"ERROR: {exc}"
+            record["baseline_answer"] = ""
+            rows_for_csv.append(record)
+            continue
+
+        # Brief pause to stay within the Gemini free-tier rate limit.
+        time.sleep(2)
 
         # Automatic outcome scoring (start/sit with known ground truth).
         if gt:

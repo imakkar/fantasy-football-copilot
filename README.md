@@ -6,7 +6,7 @@ NFL statistics from the completed 2024 season.
 
 **Author:** Ishan Makkar (solo project, approved by the course instructor)
 **Course:** IE 7374 — Generative AI
-**Milestone 3:** Data Pipeline
+**Repository:** https://github.com/imakkar/fantasy-football-copilot
 
 ---
 
@@ -172,26 +172,31 @@ docker run --rm -e GEMINI_API_KEY=$GEMINI_API_KEY \
   ff-copilot python src/model_runner.py --num 8
 ```
 
-## Preliminary results
+## Results
 
-Running `python src/model_runner.py --num 8` (Gemini `gemini-2.5-flash` generator,
-local MiniLM embeddings) on eight start/sit questions produced RAG vs. baseline answers
-saved in [`outputs/`](outputs/). Three patterns emerged (full analysis in
-[`outputs/README.md`](outputs/README.md)):
+Full RQ1 evaluation over the 20-query benchmark (Gemini `gemini-2.5-flash` generator,
+local MiniLM embeddings, completed 2024 season corpus). Raw per-query data is in
+[`outputs/evaluation_results.csv`](outputs/evaluation_results.csv); full analysis in
+[`docs/results.md`](docs/results.md).
 
-1. **Grounding supplies knowledge the base model lacks.** The baseline model's training
-   cutoff predates the 2024 season, so it often replies that "the 2024 season has not
-   happened yet." The RAG system answers correctly because the real statistics are
-   retrieved and supplied at inference time.
-2. **Grounding produces correct, cited answers.** e.g. Bijan Robinson vs. Saquon Barkley
-   (Wk8): RAG names Bijan and cites 23.6 vs. 12.1 PPR; the baseline gives an unsourced
-   pick.
-3. **Grounding reduces hallucination.** When a compared player did not play that week,
-   the RAG system says so instead of fabricating a stat line.
+| Metric | RAG | Baseline |
+|--------|-----|----------|
+| Outcome accuracy (start/sit, 11 scored) | **100% (11/11)** | **55% (6/11)** |
+| Faithfulness (human, 1-5) | **5.00** | **2.30** |
+| Helpfulness (human, 1-5) | **3.95** | **1.75** |
+| Avg latency (s) | ~3.2 | ~2.7 |
 
-These early observations support RQ1 (retrieval grounding improves faithfulness and
-outcome accuracy). The full 20-query evaluation with human faithfulness ratings is the
-final-milestone deliverable.
+Key findings:
+
+1. **Grounding turns a coin-flip into certainty.** Start/sit is a binary choice (~50%
+   by chance). The baseline scored 55% — essentially chance — while RAG scored 100% by
+   retrieving the real box scores. The 45-point gap is the core evidence for RQ1.
+2. **The baseline's knowledge is stale.** Gemini's training cutoff predates the 2024
+   season, so the baseline often replies that "the 2024 season has not happened yet."
+   RAG supplies the missing facts at inference time.
+3. **RAG is faithful and honest about gaps.** Every RAG claim traces to a retrieved
+   passage (faithfulness 5.0). When a compared player did not play that week, RAG says
+   so instead of fabricating a stat line, rather than guessing like the baseline.
 
 ## How outcomes are scored (and why it is honest)
 
