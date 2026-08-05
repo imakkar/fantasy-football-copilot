@@ -17,6 +17,7 @@ data/chroma/
 outputs/*
 !outputs/samples.txt
 !outputs/sample_generations.json
+!outputs/evaluation_results.csv
 !outputs/README.md
 
 # Secrets
